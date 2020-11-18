@@ -44,6 +44,13 @@ namespace WpfView
             commandBinding.CanExecute += this.CanInterruptProcessing;
             commandBinding.Executed += this.InterruptProcessing;
             this.CommandBindings.Add(commandBinding);
+
+            commandBinding = new CommandBinding
+            {
+                Command = UserCommands.ShowStatisticsCommand
+            };
+            commandBinding.Executed += this.OpenStatisticsWindow;
+            this.CommandBindings.Add(commandBinding);
         }
 
         private void LaunchProcessing(object sender, ExecutedRoutedEventArgs e)
@@ -77,6 +84,12 @@ namespace WpfView
         {
             if (e.AddedItems.Count > 0)
                 CurrentChosenClassGrid.DataContext = e.AddedItems[0];
+        }
+
+        private void OpenStatisticsWindow(object sender, ExecutedRoutedEventArgs e)
+        {
+            StatisticsWindow statisticsWindow = new StatisticsWindow();
+            statisticsWindow.ShowDialog();
         }
 
         private void WindowClosing(object sender, CancelEventArgs e)

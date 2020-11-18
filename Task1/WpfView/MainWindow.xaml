@@ -20,7 +20,7 @@
         <Button Name="LaunchButton" Content="Process images in chosen directory!" Command="local:UserCommands.LaunchProcessingCommand" HorizontalAlignment="Left" Height="22" Margin="25,92,0,0" VerticalAlignment="Top" Width="209" Background="Beige" RenderTransformOrigin="2.977,4.021"/>
         <Button Name="ChooseButton" Content="Choose directory!" Command="ApplicationCommands.Open" HorizontalAlignment="Left" Height="22" Margin="25,65,0,0" VerticalAlignment="Top" Width="209" Background="Beige"/>
         <TextBlock Name="CurrentChosenDirectoryTextBlock" Text="{Binding Path=CurrentChosenDirectory, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="21" Margin="10,10,0,0" VerticalAlignment="Top" Width="1281" Background="Beige" RenderTransformOrigin="-2.195,2.459" Grid.ColumnSpan="4"/>
-        <Button Name="InterruptButton" Content="Stop processing!" Command="ApplicationCommands.Stop" HorizontalAlignment="Left" VerticalAlignment="Top" Width="209" Margin="25,673,0,0" RenderTransformOrigin="-2.323,-1.765" Height="22"/>
+        <Button Name="InterruptButton" Content="Stop processing!" Command="ApplicationCommands.Stop" HorizontalAlignment="Left" VerticalAlignment="Top" Width="209" Margin="25,598,0,0" RenderTransformOrigin="-2.323,-1.765" Height="22"/>
         <Grid Name="CurrentChosenClassGrid" HorizontalAlignment="Left" Height="620" Margin="300,100,-141.4,-180.2" VerticalAlignment="Top" Width="991" Grid.ColumnSpan="4">
             <ListBox Name="ImagesListBox" ItemsSource="{Binding Path=Images, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="560" Margin="234,50,0,0" VerticalAlignment="Top" Width="757" Background="Beige">
                 <ListBox.ItemTemplate>
@@ -46,6 +46,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <TextBlock Text="Choose class of images:" HorizontalAlignment="Left" Margin="25,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button Name="ShowStatisticsButton" Command="local:UserCommands.ShowStatisticsCommand" Content="Show global stats!" HorizontalAlignment="Left" Margin="25,684,0,0" VerticalAlignment="Top" Width="209" Background="Beige"/>
 
     </Grid>
 </Window>

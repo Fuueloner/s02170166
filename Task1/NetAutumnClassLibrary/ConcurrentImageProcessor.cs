@@ -1,6 +1,11 @@
-﻿using System.IO;
+﻿using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Formats;
+
+using System.IO;
 using System.Collections.Concurrent;
 using System.Threading;
+using System.Linq;
 using System;
 
 namespace NetAutumnClassLibrary
@@ -12,6 +17,7 @@ namespace NetAutumnClassLibrary
         readonly ConcurrentQueue<Prediction> mSummaryInfo = new ConcurrentQueue<Prediction>();
 
         readonly ConcurrentQueue<string>     imagePaths;
+        private readonly object              dbMutex = new object();
 
         public ConcurrentImageProcessor(string directoryPath)
         {
@@ -35,9 +41,49 @@ namespace NetAutumnClassLibrary
                     Console.WriteLine("Stopping thread by signal.");
                     return;
                 }
-                SingleImageProcessor imageProcessor = new SingleImageProcessor(name);
-                Prediction info = imageProcessor.GetPrediction();
-                mSummaryInfo.Enqueue(info);
+                bool isMatches = false;
+                lock (dbMutex)
+                {
+                    using (ImageInfoContext db = new ImageInfoContext())
+                    {
+                        var imageDuplicates = db.ImageInfos.Where(obj => obj.FullPath.Equals(name));
+                        if (imageDuplicates.Count() != 0)
+                        {
+
+                            foreach (var obj in imageDuplicates)
+                                using (var ms = new MemoryStream())
+                                {
+                                    Image.Load<Rgb24>(name, out IImageFormat format).Save(ms, format);
+                                    if (obj.Image == ms.ToArray())
+                                    {
+                                        isMatches = true;
+                                        break;
+                                    }
+                                }
+                        }
+                    }
+                }
+                if (!isMatches)
+                {
+                    SingleImageProcessor imageProcessor = new SingleImageProcessor(name);
+                    Prediction info = imageProcessor.GetPrediction();
+                    mSummaryInfo.Enqueue(info);
+                    lock (dbMutex)
+                    {
+                        using (ImageInfoContext db = new ImageInfoContext())
+                        {
+                            ImageInfo imageInfo = new ImageInfo() { ClassName = info.Label, Confidence = info.Confidence, FullPath = info.Path };
+                            using (var ms = new MemoryStream())
+                            {
+                                Image.Load<Rgb24>(name, out IImageFormat format).Save(ms, format);
+                                imageInfo.Image = ms.ToArray();
+                            }
+                            db.ImageInfos.Add(imageInfo);
+                            db.SaveChanges();
+                        }
+
+                    }
+                }
             }
 
             Console.WriteLine("Thread has finished working.");
