@@ -54,7 +54,7 @@ namespace NetAutumnClassLibrary
                                 using (var ms = new MemoryStream())
                                 {
                                     Image.Load<Rgb24>(name, out IImageFormat format).Save(ms, format);
-                                    if (obj.Image == ms.ToArray())
+                                    if (ComputingTools.UnsafeCompareBytes(obj.Image, ms.ToArray()))
                                     {
                                         isMatches = true;
                                         break;
