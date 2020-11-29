@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace WpfView
 {
@@ -19,7 +14,9 @@ namespace WpfView
     /// </summary>
     public partial class StatisticsWindow : Window
     {
-        private string mStats = "";
+        private readonly string mStats = "";
+
+        private readonly ObservableCollection<Image> mGlobalImageList = new ObservableCollection<Image>();
         public StatisticsWindow()
         {
             InitializeComponent();
@@ -31,9 +28,29 @@ namespace WpfView
 
                 foreach (var imageClass in statsList)
                     mStats += (imageClass.Key.ToString() + " -- " + imageClass.Count().ToString() + " \n");
+
+                foreach (var obj in db.ImageInfos.AsNoTracking().AsEnumerable())
+                {
+                    MemoryStream byteStream = new MemoryStream(obj.Image);
+                    BitmapImage bitMapImage = new BitmapImage();
+                    bitMapImage.BeginInit();
+                    bitMapImage.StreamSource = byteStream;
+                    bitMapImage.EndInit();
+                    Image newImage = new Image
+                    {
+                        Source = bitMapImage,
+                        Stretch = Stretch.Uniform,
+                        StretchDirection = StretchDirection.DownOnly,
+                        Width = 100,
+                        Height = 100
+                    };
+                    mGlobalImageList.Add(newImage);
+                }
+
             }
 
             StatsTextBlock.Text = mStats;
+            ImagesListBox.ItemsSource = mGlobalImageList;
 
             CommandBinding commandBinding = new CommandBinding
             {

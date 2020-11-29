@@ -7,9 +7,10 @@
         mc:Ignorable="d"
         Background="DarkSalmon"
         ResizeMode="NoResize"
-        Title="DB statistics" WindowStartupLocation="CenterScreen" Height="600" Width="250">
-    <Grid>
+        Title="DB statistics" WindowStartupLocation="CenterScreen" Height="604.8" Width="418">
+    <Grid Margin="0,0,31.4,0.2">
         <TextBlock Name="StatsTextBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="223" Height="526"/>
         <Button Content="Clear DB stats!" Command="local:UserCommands.ClearStatisticsCommand" HorizontalAlignment="Left" Margin="36,541,0,0" VerticalAlignment="Top" Width="162" Grid.ColumnSpan="2" Background="Beige"/>
+        <ListBox ItemsSource="{Binding Path=mGlobalImageList, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Name="ImagesListBox" Background="Beige" HorizontalAlignment="Left" Height="550" Margin="255,10,-13.2,0" VerticalAlignment="Top" Width="146"/>
     </Grid>
 </Window>
