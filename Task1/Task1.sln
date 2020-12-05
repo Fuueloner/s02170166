@@ -12,6 +12,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfView", "WpfView\WpfView.
 		{9DF705D3-F707-4F56-9ECD-7CD279EA0CF3} = {9DF705D3-F707-4F56-9ECD-7CD279EA0CF3}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfWebClient", "WpfClient\WpfWebClient.csproj", "{9533450A-0EE1-468E-B44B-911E2D149CE9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0CEA1037-45DF-43BD-8B94-0FCAB767A32C} = {0CEA1037-45DF-43BD-8B94-0FCAB767A32C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProtocolLibraryForDotNetAutumn", "ProtocolLibraryForDotNetAutumn\ProtocolLibraryForDotNetAutumn.csproj", "{0CEA1037-45DF-43BD-8B94-0FCAB767A32C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetAutumnWebServer", "DotNetAutumnWeb\DotNetAutumnWebServer.csproj", "{E41BAF2E-40B7-4DD4-B138-7956E8DD2D2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +39,18 @@ Global
 		{E6961DE5-B0F8-41D9-B531-3E5E961707C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6961DE5-B0F8-41D9-B531-3E5E961707C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6961DE5-B0F8-41D9-B531-3E5E961707C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9533450A-0EE1-468E-B44B-911E2D149CE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9533450A-0EE1-468E-B44B-911E2D149CE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9533450A-0EE1-468E-B44B-911E2D149CE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9533450A-0EE1-468E-B44B-911E2D149CE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CEA1037-45DF-43BD-8B94-0FCAB767A32C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CEA1037-45DF-43BD-8B94-0FCAB767A32C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CEA1037-45DF-43BD-8B94-0FCAB767A32C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CEA1037-45DF-43BD-8B94-0FCAB767A32C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E41BAF2E-40B7-4DD4-B138-7956E8DD2D2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E41BAF2E-40B7-4DD4-B138-7956E8DD2D2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E41BAF2E-40B7-4DD4-B138-7956E8DD2D2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E41BAF2E-40B7-4DD4-B138-7956E8DD2D2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

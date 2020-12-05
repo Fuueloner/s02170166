@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.ML.OnnxRuntime.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.props" Condition="Exists('..\packages\Microsoft.ML.OnnxRuntime.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.props')" />
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.ML.OnnxRuntime.MKLML.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.MKLML.props" Condition="Exists('..\packages\Microsoft.ML.OnnxRuntime.MKLML.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.MKLML.props')" />
-  <Import Project="..\packages\Microsoft.ML.OnnxRuntime.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.props" Condition="Exists('..\packages\Microsoft.ML.OnnxRuntime.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -210,6 +210,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SingleBlobImageProcessor.cs" />
     <Compile Include="ComputingTools.cs" />
     <Compile Include="ConcurrentImageProcessor.cs" />
     <Compile Include="ImageInfo.cs" />
@@ -230,15 +231,15 @@
       <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.ML.OnnxRuntime.Managed.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.Managed.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ML.OnnxRuntime.Managed.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.Managed.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.ML.OnnxRuntime.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ML.OnnxRuntime.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.ML.OnnxRuntime.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ML.OnnxRuntime.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.ML.OnnxRuntime.MKLML.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.MKLML.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ML.OnnxRuntime.MKLML.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.MKLML.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.ML.OnnxRuntime.MKLML.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.MKLML.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ML.OnnxRuntime.MKLML.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.MKLML.targets'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ML.OnnxRuntime.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ML.OnnxRuntime.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.ML.OnnxRuntime.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.ML.OnnxRuntime.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.ML.OnnxRuntime.Managed.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.Managed.targets" Condition="Exists('..\packages\Microsoft.ML.OnnxRuntime.Managed.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.Managed.targets')" />
-  <Import Project="..\packages\Microsoft.ML.OnnxRuntime.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.targets" Condition="Exists('..\packages\Microsoft.ML.OnnxRuntime.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.targets')" />
   <Import Project="..\packages\Microsoft.ML.OnnxRuntime.MKLML.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.MKLML.targets" Condition="Exists('..\packages\Microsoft.ML.OnnxRuntime.MKLML.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.MKLML.targets')" />
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Microsoft.ML.OnnxRuntime.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.targets" Condition="Exists('..\packages\Microsoft.ML.OnnxRuntime.1.5.2\build\netstandard1.1\Microsoft.ML.OnnxRuntime.targets')" />
 </Project>

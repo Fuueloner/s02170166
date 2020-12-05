@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <StartupObject>DotNetCoreWeb.Program</StartupObject>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.ML.OnnxRuntime.Managed" Version="1.5.2" />
+    <PackageReference Include="Microsoft.ML.OnnxRuntime.MKLML" Version="1.5.2" />
+    <PackageReference Include="System.Buffers" Version="4.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetAutumnClassLibrary\NetAutumnClassLibrary.csproj" />
+    <ProjectReference Include="..\ProtocolLibraryForDotNetAutumn\ProtocolLibraryForDotNetAutumn.csproj" />
+  </ItemGroup>
+
+</Project>
